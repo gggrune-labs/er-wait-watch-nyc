@@ -34,3 +34,30 @@ print("Sample row:", r.json()["results"][0])
 # Test 3: ask for more rows than the API probably allows. What comes back?
 r = requests.get(QUERY_URL, params={"limit": 2000}, timeout=60)
 print("Asked for 2000, got:", len(r.json().get("results", [])), "| status:", r.status_code)
+
+
+# Test 4: find the real page size limit, and read the error message
+for size in [500, 501]:
+    r = requests.get(QUERY_URL, params={"limit": size}, timeout=60)
+    print(f"limit={size} -> status {r.status_code}, rows: {len(r.json().get('results', []))}")
+    if r.status_code != 200:
+        print("  Error says:", r.text[:300])
+
+# Test 5: NY + OP-18b only. How many NY hospitals report ER wait time?
+op18_params = {
+    "limit": 500,
+    "count": "true",
+    "conditions[0][property]": "state",
+    "conditions[0][value]": "NY",
+    "conditions[0][operator]": "=",
+    "conditions[1][property]": "measure_id",
+    "conditions[1][value]": "OP_18b",
+    "conditions[1][operator]": "=",
+}
+r = requests.get(QUERY_URL, params=op18_params, timeout=60)
+data = r.json()
+print("NY hospitals with OP_18b:", data.get("count"))
+if data.get("results"):
+    row = data["results"][0]
+    print("Example:", row["facility_name"], "|", row["countyparish"], "|", row["score"], "min |", row["start_date"], "to", row["end_date"])
+
