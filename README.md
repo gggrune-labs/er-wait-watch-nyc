@@ -2,7 +2,7 @@
 
 Tracks how long patients wait in emergency departments at every NYC hospital, release by release, using public CMS data.
 
-> Status: in progress. This README fills in as the pipeline is built.
+> Status: in progress. API explored and documented (see docs/api_findings.md). Extract script is next.
 
 ## About me
 
@@ -26,7 +26,7 @@ Quality analysts at NYC hospitals who report ED throughput to leadership. What t
 
 ## Key decisions
 
-[To be added. See docs/decisions.md]
+See [docs/decisions.md](docs/decisions.md) for each decision and the alternatives I considered, and [docs/api_findings.md](docs/api_findings.md) for what testing the CMS API turned up.
 
 ## What I'd explore next
 
