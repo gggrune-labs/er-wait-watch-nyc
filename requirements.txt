@@ -1,5 +1,4 @@
+requests==2.34.2
 duckdb==2.0.1
 pydantic==2.14.4
-pydantic_core==2.50.5
 pytest==9.2.0
-requests==2.34.2
