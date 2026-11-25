@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Virtual environment
+.venv/
+venv/
+
+# Built database (rebuilt from raw files by the pipeline)
+*.duckdb
+*.duckdb.wal
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets (none needed, but just in case)
+.env
